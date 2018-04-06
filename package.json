@@ -7,11 +7,12 @@
     "webpack:server": "babel-node node_modules/.bin/webpack-dev-server --mode=development"
   },
   "dependencies": {
-    "mini-css-extract-plugin": "^0.4.0",
     "react": "^16.3.1",
     "react-dom": "^16.3.1"
   },
   "devDependencies": {
+    "@types/react": "^16.3.5",
+    "@types/react-dom": "^16.0.4",
     "awesome-typescript-loader": "^5.0.0",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
@@ -20,6 +21,7 @@
     "file-loader": "^1.1.11",
     "glob": "^7.1.2",
     "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.4.0",
     "purify-css": "^1.2.5",
     "purifycss-webpack": "^0.7.0",
     "script-ext-html-webpack-plugin": "^2.0.1",
