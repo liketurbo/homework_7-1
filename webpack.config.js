@@ -61,7 +61,7 @@ const plugins = [
     defaultAttribute: 'async',
   }),
   new PurifyCSSPlugin({
-    paths: glob.sync(path.join(__dirname, 'public/index.html')),
+    paths: glob.sync(path.join(__dirname, 'source/**/*.jsx')),
     minimize: inProduction,
   }),
 ];

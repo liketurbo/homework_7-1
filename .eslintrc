@@ -7,6 +7,8 @@
     "no-restricted-syntax": "off",
     "no-continue": "off",
     "no-plusplus": "off",
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    "react/prop-types": "off",
+    "jsx-a11y/click-events-have-key-events": "off"
   }
 }

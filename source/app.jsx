@@ -9,37 +9,60 @@ import bruteForceAlgorithm from './algorithms/brute-force';
 class App extends Component {
   constructor(props) {
     super(props);
+
+    this.clickHandlerSuggest = this.clickHandlerSuggest.bind(this);
+    this.changeHandlerSuggest = this.changeHandlerSuggest.bind(this);
+
+    this.nameOfAlgorithms = {
+      'Native Algorithm': 0,
+      'Brute Force Algorithm': 1,
+    };
+
     this.state = {
       input: '',
       output: [],
+      algorithms: [],
+      currentAlgorithm: 0,
     };
   }
 
-  clickHandler() {
-    const { input } = this.state;
-    this.setState({ output: bruteForceAlgorithm(streetsData, input) });
+  componentWillMount() {
+    this.setState({
+      algorithms: [nativeAlgorithm, bruteForceAlgorithm],
+    });
+  }
+
+  clickHandlerSuggest() {
+    const { input, algorithms, currentAlgorithm } = this.state;
+    this.setState({ output: algorithms[currentAlgorithm](streetsData, input) });
+  }
+
+  changeHandlerSuggest(e) {
+    this.setState({ input: e.target.value });
   }
 
   render() {
     return (
       <div className="body" >
-        <div className="suggest" >
-          <input
-            className="suggest__input"
-            onChange={e => this.setState({ input: e.target.value })}
-          />
-          <button
-            className="suggest__button"
-            onClick={() => this.clickHandler()}
-          >Suggest
-          </button>
-          <div className="suggest__output">
-            {
-              this.state.output.map((elem, index) => (
-                <div key={index} className="output__item">{elem}</div>
-              ))
-            }
-          </div>
+        <Suggest
+          input={this.state.input}
+          output={this.state.output}
+          clickHandler={this.clickHandlerSuggest}
+          changeHandler={this.changeHandlerSuggest}
+        />
+        <div className="algorithms">
+          {
+            Object.keys(this.nameOfAlgorithms).map((name, key) => (
+              <div
+                className="algorithm"
+                role="button"
+                tabIndex="0"
+                key={key}
+                onClick={() => this.setState({ currentAlgorithm: key })}
+              >{name}
+              </div>
+            ))
+          }
         </div>
       </div>
     );
