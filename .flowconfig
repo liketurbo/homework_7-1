@@ -1,0 +1,5 @@
+[ignore]
+<PROJECT_ROOT>/node_modules/**/*
+[untyped]
+[include]
+<PROJECT_ROOT>/source/**/*

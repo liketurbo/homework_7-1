@@ -12,11 +12,14 @@ const inProduction = process.argv[process.argv.length - 1]
 
 const basics = {
   entry: {
-    app: path.join(__dirname, 'source/index.tsx'),
+    app: path.join(__dirname, 'source/index.jsx'),
   },
   output: {
     path: path.join(__dirname, 'build'),
     filename: '[name].[chunkhash].js',
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
   },
 };
 
@@ -39,17 +42,16 @@ const rules = [
       'postcss-loader',
     ],
   },
-  { 
-    test: /\.(t|j)sx?$/, 
-    use: {
-       loader: 'awesome-typescript-loader',
-    }, 
+  {
+    test: /\.jsx?$/,
+    use: ['babel-loader'],
+    exclude: ['/node_modules'],
   },
 ];
 
 const plugins = [
   new MiniCssExtractPlugin({
-    filename: "[name].[contenthash].css",
+    filename: '[name].[contenthash].css',
   }),
   new CleanWebpackPlugin('build'),
   new HtmlWebpackPlugin({
