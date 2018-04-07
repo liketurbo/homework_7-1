@@ -1,0 +1,12 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "env": { "browser": true },
+  "rules": {
+    "react/no-array-index-key": "off",
+    "no-restricted-syntax": "off",
+    "no-continue": "off",
+    "no-plusplus": "off",
+    "no-param-reassign": "off"
+  }
+}
