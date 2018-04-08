@@ -8,3 +8,5 @@
   * Rabin-Karp - `T: O(n*(k+l)), O(n*(k*l))` `S: O(n)`
   * Suffix Tree - `in development`
   * KMP - `in development`
+
+*Algorithms in* `source/algorithms`
