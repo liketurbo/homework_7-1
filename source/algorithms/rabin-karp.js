@@ -1,13 +1,13 @@
 class RabinCarpAlgorithm {
   constructor() {
-    this.radix = 16;
-    this.modulo = 190011979;
+    this.radix = 10;
+    this.modulo = 997;
   }
 
   _hash(str: string, start: number, end: number): number {
     let hash = 0;
     for (let i = start; i < end; i++) {
-      hash = (this.radix * hash) + str.charCodeAt(i);
+      hash = ((this.radix * hash) + str.charCodeAt(i)) % this.modulo;
     }
     return hash;
   }
