@@ -3,10 +3,10 @@
 [Demo](https://liketurbo.github.io/homework_7-1/)
 
 **Time and space complexity**
-  * Native - `TS: unknown`
-  * Brute Force - `T: O(n*k*l)` `S: O(n)`
-  * Rabin-Karp - `T: O(n*(k+l)), O(n*(k*l))` `S: O(n)`
+  * Native - `T: n/a` `S: n/a`
+  * Brute Force - `T: O(n*m*k)` `S: O(n)`
+  * Rabin-Karp - `T: O(n*(m+k)), O(n*(m*k))` `S: O(n)`
+  * KMP - `T: O(n*(m+k)` `S: O(n+k)`
   * Suffix Tree - `in development`
-  * KMP - `in development`
 
 *Algorithms in* `source/algorithms`

@@ -9,6 +9,7 @@ import Speed from './components/speed';
 import nativeAlgorithm from './algorithms/native';
 import bruteForceAlgorithm from './algorithms/brute-force';
 import rabinKarpAlgorithm from './algorithms/rabin-karp';
+import kmpAlgorithm from './algorithms/kmp';
 
 class App extends Component {
   constructor(props) {
@@ -20,8 +21,9 @@ class App extends Component {
 
     this.nameOfAlgorithms = {
       'Native Algorithm': 0,
-      'Brute Force Algorithm': 1,
+      'Brute-Force Algorithm': 1,
       'Rabin-Karp Algorithm': 2,
+      'KMP Algorithm': 3,
     };
 
     this.state = {
@@ -35,7 +37,12 @@ class App extends Component {
 
   componentWillMount() {
     this.setState({
-      algorithms: [nativeAlgorithm, bruteForceAlgorithm, rabinKarpAlgorithm],
+      algorithms: [
+        nativeAlgorithm,
+        bruteForceAlgorithm,
+        rabinKarpAlgorithm,
+        kmpAlgorithm,
+      ],
     });
   }
 

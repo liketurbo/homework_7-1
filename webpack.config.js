@@ -32,7 +32,10 @@ const rules = [
   {
     test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/,
     loader: 'file-loader',
-    options: { name: 'assets/[name].[ext]' },
+    options: {
+      name: '[name].[ext]',
+      publicPath: 'assets/',
+    },
   },
   {
     test: /\.css$/,
