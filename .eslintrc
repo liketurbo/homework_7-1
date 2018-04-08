@@ -7,8 +7,10 @@
     "no-restricted-syntax": "off",
     "no-continue": "off",
     "no-plusplus": "off",
-    "no-param-reassign": "off",
     "react/prop-types": "off",
-    "jsx-a11y/click-events-have-key-events": "off"
+    "jsx-a11y/click-events-have-key-events": "off",
+    "no-underscore-dangle": "off",
+    "no-param-reassign": "off",
+    "class-methods-use-this": "off"
   }
 }

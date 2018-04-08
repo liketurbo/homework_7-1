@@ -1,21 +1,27 @@
 import React, { Component } from 'react';
 
-import Suggest from './components/suggest';
-
 import streetsData from './data/streets.json';
+
+import Suggest from './components/suggest';
+import Algorithms from './components/algorithms';
+import Speed from './components/speed';
+
 import nativeAlgorithm from './algorithms/native';
 import bruteForceAlgorithm from './algorithms/brute-force';
+import rabinKarpAlgorithm from './algorithms/rabin-karp';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
+    this.clickHandlerAlgorithms = this.clickHandlerAlgorithms.bind(this);
     this.clickHandlerSuggest = this.clickHandlerSuggest.bind(this);
     this.changeHandlerSuggest = this.changeHandlerSuggest.bind(this);
 
     this.nameOfAlgorithms = {
       'Native Algorithm': 0,
       'Brute Force Algorithm': 1,
+      'Rabin-Karp Algorithm': 2,
     };
 
     this.state = {
@@ -23,18 +29,30 @@ class App extends Component {
       output: [],
       algorithms: [],
       currentAlgorithm: 0,
+      speed: 0,
     };
   }
 
   componentWillMount() {
     this.setState({
-      algorithms: [nativeAlgorithm, bruteForceAlgorithm],
+      algorithms: [nativeAlgorithm, bruteForceAlgorithm, rabinKarpAlgorithm],
     });
   }
 
   clickHandlerSuggest() {
     const { input, algorithms, currentAlgorithm } = this.state;
-    this.setState({ output: algorithms[currentAlgorithm](streetsData, input) });
+
+    const t0 = performance.now();
+    const result = currentAlgorithm < 2
+      ? algorithms[currentAlgorithm](streetsData, input)
+      : algorithms[currentAlgorithm].search(streetsData, input);
+    const t1 = performance.now();
+
+    this.setState({ output: result, speed: (t1 - t0) });
+  }
+
+  clickHandlerAlgorithms(key) {
+    this.setState({ currentAlgorithm: key });
   }
 
   changeHandlerSuggest(e) {
@@ -50,20 +68,12 @@ class App extends Component {
           clickHandler={this.clickHandlerSuggest}
           changeHandler={this.changeHandlerSuggest}
         />
-        <div className="algorithms">
-          {
-            Object.keys(this.nameOfAlgorithms).map((name, key) => (
-              <div
-                className="algorithm"
-                role="button"
-                tabIndex="0"
-                key={key}
-                onClick={() => this.setState({ currentAlgorithm: key })}
-              >{name}
-              </div>
-            ))
-          }
-        </div>
+        <Algorithms
+          currentAlgorithm={this.state.currentAlgorithm}
+          algorithms={this.nameOfAlgorithms}
+          clickHandler={this.clickHandlerAlgorithms}
+        />
+        <Speed speed={this.state.speed} />
       </div>
     );
   }
