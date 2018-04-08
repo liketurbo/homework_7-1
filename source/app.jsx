@@ -47,15 +47,7 @@ class App extends Component {
   }
 
   clickHandlerSuggest() {
-    const { input, algorithms, currentAlgorithm } = this.state;
-
-    const t0 = performance.now();
-    const result = currentAlgorithm < 2
-      ? algorithms[currentAlgorithm](streetsData, input)
-      : algorithms[currentAlgorithm].search(streetsData, input);
-    const t1 = performance.now();
-
-    this.setState({ output: result, speed: (t1 - t0) });
+    this.launchAlgorithm();
   }
 
   clickHandlerAlgorithms(key) {
@@ -64,6 +56,18 @@ class App extends Component {
 
   changeHandlerSuggest(e) {
     this.setState({ input: e.target.value });
+  }
+
+  launchAlgorithm() {
+    const { input, algorithms, currentAlgorithm } = this.state;
+
+    const start = performance.now();
+    const result = typeof algorithms[currentAlgorithm] === 'function'
+      ? algorithms[currentAlgorithm](streetsData, input)
+      : algorithms[currentAlgorithm].search(streetsData, input);
+    const end = performance.now();
+
+    this.setState({ output: result, speed: (end - start) });
   }
 
   render() {
